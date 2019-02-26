@@ -15,7 +15,7 @@ export default class App extends Component {
   }
 
   addToSavedList = movie => {
-    const savedList = [...this.state.savedList];
+    const savedList = this.state.savedList;
     if (savedList.findIndex((m) => {
       return m.id === movie.id;
       }) > -1 ) {
