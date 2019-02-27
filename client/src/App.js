@@ -15,7 +15,7 @@ export default class App extends Component {
   }
 
   addToSavedList = movie => {
-    const savedList = [...this.state.savedList];
+    const savedList = this.state.savedList;
     if (savedList.findIndex((m) => {
       return m.id === movie.id;
       }) > -1 ) {
@@ -28,8 +28,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <SavedList list={this.state.savedList} />
-        <Route exact path="/" component={MovieList} />
+        <Route path="/" render={props => <SavedList list={this.state.savedList} {...props} /> } />
+    <Route exact path="/" render={props => <MovieList  addToSavedList={this.addToSavedList} /> } />
         <Route path="/movies/:id" render={(props) => <Movie {...props} addToSavedList={this.addToSavedList} /> } />
       </div>
     );
